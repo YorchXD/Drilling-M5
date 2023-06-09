@@ -40,10 +40,16 @@ JOIN customer c on c.customer_id = r.customer_id
 WHERE EXTRACT(YEAR FROM rental_date) = 2005 AND EXTRACT(MONTH FROM rental_date) = 5;
 
 -- 4.3) Listar Número, Fecha (payment_date) y Total (amount) de todas las “payment”.
-SELECT count(payment_id) as numero, DATE(payment_date) as fecha, sum(amount) as total
-FROM payment
-GROUP BY fecha
-ORDER BY fecha;
+-- SELECT count(payment_id) as numero, DATE(payment_date) as fecha, sum(amount) as total
+-- FROM payment
+-- GROUP BY fecha
+-- ORDER BY fecha;
+
+SELECT payment_id AS Número,
+       payment_date AS Fecha, 
+       amount AS Total
+FROM Payment
+GROUP BY payment_id, payment_date;
 
 -- 4.4) Listar todas las “film” del año 2006 que contengan un (rental_rate) mayor a 4.0.
 SELECT f.film_id, f.title, l.name as language, release_year, rental_rate
